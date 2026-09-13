@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.devopsautomate.jenkinshealth</string>
+
+    <!-- No credentials here on purpose: the script loads them from the
+         gitignored .env at the repo root. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/abhishekbharadwaj/Downloads/ClaudeCode/devOpsAutomate/scripts/ci-cd/check-jenkins-health.sh</string>
+        <string>--quiet</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <!-- Every 5 minutes. -->
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <!-- With --quiet the script prints nothing when Jenkins is healthy, so
+         this file only accumulates problems and startup errors. Full history
+         of every run, healthy included, goes to
+         scripts/ci-cd/logs/jenkins-health-YYYY-MM-DD.log -->
+    <key>StandardOutPath</key>
+    <string>/Users/abhishekbharadwaj/Downloads/ClaudeCode/devOpsAutomate/scripts/ci-cd/logs/launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/abhishekbharadwaj/Downloads/ClaudeCode/devOpsAutomate/scripts/ci-cd/logs/launchd.log</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>
